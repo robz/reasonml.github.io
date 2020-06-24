@@ -8,6 +8,9 @@
       "articles-and-videos": {
         "title": "Articles & Videos"
       },
+      "bindings": {
+        "title": "Bindings"
+      },
       "boolean": {
         "title": "Boolean"
       },
@@ -77,6 +80,9 @@
       "more-on-type": {
         "title": "More on Type"
       },
+      "mutable-bindings": {
+        "title": "Mutable Bindings"
+      },
       "mutation": {
         "title": "Mutation"
       },
@@ -91,6 +97,12 @@
       },
       "object": {
         "title": "Object"
+      },
+      "old-overview": {
+        "title": "Overview"
+      },
+      "old-record": {
+        "title": "Record"
       },
       "overview": {
         "title": "Overview"
@@ -113,8 +125,11 @@
       "quickstart-ocaml": {
         "title": "Native Quickstart"
       },
-      "record": {
-        "title": "Record"
+      "records": {
+        "title": "Records"
+      },
+      "recursion-and-scoping": {
+        "title": "Recursion and Scoping"
       },
       "regular-expression": {
         "title": "Regular Expression"

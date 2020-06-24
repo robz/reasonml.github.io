@@ -10,16 +10,21 @@
     ],
     "Language Basics": [
       "overview",
-      "let-binding"
+      "bindings",
+      "mutable-bindings",
+      "records",
+      "recursion-and-scoping"
     ],
     "Language Basics (Old)": [
+      "old-overview",
+      "let-binding",
       "type",
       "string-and-char",
       "regular-expression",
       "boolean",
       "integer-and-float",
       "tuple",
-      "record",
+      "old-record",
       "variant",
       "null-undefined-option",
       "list-and-array",

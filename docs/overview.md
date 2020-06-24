@@ -6,6 +6,22 @@ This is an overview of most language features in Reason. It does not explain
 them in detail, but should serve as a quick reference. Please see the guides
 on the left for additional details about each feature.
 
+## Standard types
+
+Feature                         | Example
+--------------------------------|----------
+Int                             | `let x: int = 10;`
+Float                           | `let x: float = 10.0;`
+Boolean                         | `let x: bool = false;`
+String                          | `let x: string = "ten";`
+Char                            | `let x: char = 'c';`
+Unit                            | `let x: unit = ();`
+Option                          | `let x: option(int) = Some(10);`
+Tuple                           | `let x: (int, string) = (10, "ten");`
+List                            | `let x: list(int) = [1, 2, 3];`
+Array                           | <code>let x: array(int) = [&#124;1, 2, 3&#124;];</code>
+Functions                       | `let x: (int, int) => int = (a, b) => a + b;`
+
 ## Strings
 
 Feature                         | Example
@@ -46,17 +62,25 @@ Function definition             | `let divide = (a, b) => a / b;`
 Function calls                  | `divide(6, 2); // 3`
 Named arguments                 | `let divide = (~a, ~b) => a / b;`
 Calling named arguments         | `divide(~a=6, ~b=2); // 3`
-Explicit typing                 | `let divide = (a: int, b: int): int => a / b;`
 
 ## Advanced Functions
 
 Feature                         | Example
 --------------------------------|----------
-Function chaining (pipe)        | <code>32 &#124;> half &#124;> half; // 8</code>
 Function currying               | `let divideTen = divide(10); divideTen(5); // 2`
 Currying specific args          | `let half = divide(_, 2); half(10); // 5`
 Default arguments               | `let divide = (~a=100, ~b) => a / b;`
 Optional arguments              | `let print = (~prefix=?, text) => {...};`
+Function chaining (pipe)        | <code>32 &#124;> half &#124;> half; // 8</code>
+
+## Function Types
+
+Feature                         | Example
+--------------------------------|----------
+Inline typing                   | `let divide = (a: int, b: int): int => a / b;`
+Type definition                 | `type fn = (int, int) => int;`
+Typing optional arguments       | `let print = (~prefix: option(string)=?, text) => {...};`
+
 
 ## Basic Structures
 
@@ -71,7 +95,27 @@ Array access                    | <code>let arr = [&#124;1, 2, 3&#124;]; arr[1];
 - List Functions: [`module List`](https://caml.inria.fr/pub/docs/manual-ocaml/libref/List.html)
 - Array Functions: [`module Array`](https://caml.inria.fr/pub/docs/manual-ocaml/libref/Array.html)
 
+## Maps and Sets
+
+There are several different ways to interact with Maps and Sets depending on the
+specific environment being used. In standard Reason code there are `Map` and
+`Set` modules:
+
+- [`module Map.Make`](https://caml.inria.fr/pub/docs/manual-ocaml/libref/Map.Make.html)
+- [`module Set.Make`](https://caml.inria.fr/pub/docs/manual-ocaml/libref/Set.Make.html)
+
+When using BuckleScript `belt` exposes these modules:
+
+- [`module Belt.Map`](https://bucklescript.github.io/bucklescript/api/Belt.Map.html)
+- [`module Belt.Set`](https://bucklescript.github.io/bucklescript/api/Belt.Set.html)
+
+There are also other libraries that will provide their own implementation of
+these data structures. Check the style guide of the project you are
+working in to determine which module to use.
+
 ## Records
+
+_Details: [Records](records.md)_
 
 Feature                         | Example
 --------------------------------|----------
@@ -145,6 +189,8 @@ Unit as only argument           | `let fn = () => 1; fn();`
 
 ## Refs
 
+_Details: [Mutable Bindings](mutable-bindings.md)_
+
 Refs are a way to have a mutable "variable" in your program. It is a thin wrapper
 around a record with a mutable field called `contents`.
 
@@ -180,37 +226,42 @@ Module creation                 | `module Foo = { let bar = 10; };`
 Module access                   | `Foo.bar;`
 Module types                    | `module type Foo = { let bar: int; };`
 
+## Functors
+
+Functors are like functions that create modules. This is an advanced topic
+that can be very powerful. Here is a basic example:
+
+```reason
+module type Stringable = {
+  type t;
+  let toString: (t) => string;
+};
+
+module Printer = (Item: Stringable) => {
+  let print = (t: Item.t) => {
+    print_endline(Item.toString(t));
+  };
+
+  let printList = (list: list(Item.t)) => {
+    list
+    |> List.map(Item.toString)
+    |> String.concat(", ")
+    |> print_endline;
+  };
+};
+
+module IntPrinter = Printer({
+  type t = int;
+  let toString = string_of_int;
+});
+
+IntPrinter.print(10); // 10
+IntPrinter.printList([1, 2, 3]); // 1, 2, 3
+```
+
 ## Comments
 
 Feature                         | Example
 --------------------------------|----------
 Multiline Comment               | `/* Comment here */`
 Single line Comment             | `// Comment here`
-
-
----
-
-
-## Old
-
-Feature                         | Example                              | JavaScript Output
---------------------------------|--------------------------------------|----------------------
-String                          | `"Hello"`                            | `"Hello"`
-Character                       | `'x'`                                | `"x"`
-Integer                         | `23`, `-23`                          | `23`, `-23`
-Float                           | `23.0`, `-23.0`                      | `23.0`, `-23.0`
-Integer Addition                | `23 + 1`                             | `23 + 1`
-Float Addition                  | `23.0 +. 1.0`                        | `23.0 + 1.0`
-Integer Division/Multiplication | `2 / 23 * 1`                         | `2 / 23 * 1`
-Float Division/Multiplication   | `2.0 /. 23.0 *. 1.0`                 | `2.0 / 23.0 * 1.0`
-Float Exponentiation            | `2.0 ** 3.0`                         | `Math.pow(3, 4)`
-String Concatenation            | `"Hello " ++ "World"`                | `"Hello " + "World"`
-Comparison                      | `>`, `<`, `>=`, `<=`                 | `>`, `<`, `>=`, `<=`
-Boolean operation               | `!`, `&&`, <code>&#124;&#124;</code> | `!`, `&&`, <code>&#124;&#124;</code>
-Shallow and deep Equality       | `===`, `==`                          | `===`, `==`
-List                            | `[1, 2, 3]`                          | `[1, [2, [3, 0]]]`
-List Prepend                    | `[a1, a2, ...theRest]`               | `[a1, [a2, theRest]]`
-Array                           | <code>[&#124;1, 2, 3&#124;]</code>   | <code>[1, 2, 3]</code>
-Record                          | `type t = {b: int}; let a = {b: 10}` | `var a = {b: 10}`
-Multiline Comment               | `/* Comment here */`                 | Not in output
-Single line Comment             | `// Comment here`                    | Not in output
