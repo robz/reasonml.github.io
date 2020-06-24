@@ -13,7 +13,7 @@
       "bindings",
       "mutable-bindings",
       "records",
-      "recursion-and-scoping"
+      "recursion"
     ],
     "Language Basics (Old)": [
       "old-overview",

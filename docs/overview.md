@@ -49,8 +49,8 @@ Feature                         | Example
 --------------------------------|----------
 Comparison                      | `>`, `<`, `>=`, `<=`
 Boolean operations              | `!`, `&&`, <code>&#124;&#124;</code>
-Reference equality              | `===`
-Structural equality             | `==`
+Reference equality              | `===`, `!==`
+Structural equality             | `==`, `!=`
 If-Else expressions             | `if (condition) { a; } else { b; }`
 Ternary expressions             | `condition ? a : b;`
 
@@ -62,6 +62,7 @@ Function definition             | `let divide = (a, b) => a / b;`
 Function calls                  | `divide(6, 2); // 3`
 Named arguments                 | `let divide = (~a, ~b) => a / b;`
 Calling named arguments         | `divide(~a=6, ~b=2); // 3`
+Recursive functions             | `let rec infinite = () => infinite();`
 
 ## Advanced Functions
 
@@ -78,7 +79,7 @@ Function chaining (pipe)        | <code>32 &#124;> half &#124;> half; // 8</code
 Feature                         | Example
 --------------------------------|----------
 Inline typing                   | `let divide = (a: int, b: int): int => a / b;`
-Type definition                 | `type fn = (int, int) => int;`
+Standalone type                 | `type fn = (int, int) => int;`
 Typing optional arguments       | `let print = (~prefix: option(string)=?, text) => {...};`
 
 

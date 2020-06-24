@@ -128,8 +128,8 @@
       "records": {
         "title": "Records"
       },
-      "recursion-and-scoping": {
-        "title": "Recursion and Scoping"
+      "recursion": {
+        "title": "Recursion"
       },
       "regular-expression": {
         "title": "Regular Expression"
