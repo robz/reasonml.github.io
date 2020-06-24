@@ -10,7 +10,9 @@
     ],
     "Language Basics": [
       "overview",
-      "let-binding",
+      "let-binding"
+    ],
+    "Language Basics (Old)": [
       "type",
       "string-and-char",
       "regular-expression",
