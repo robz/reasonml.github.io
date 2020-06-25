@@ -117,8 +117,6 @@ working in to determine which module to use.
 
 ## Records
 
-_Details: [Records](records.md)_
-
 Feature                         | Example
 --------------------------------|----------
 Record definition               | `type t = {foo: int, bar: string};`
@@ -130,7 +128,7 @@ Mutable record fields           | `type t = {mutable baz: int}; let z = {baz: 10
 Mutable record updates          | `z.baz = 23;`
 Polymorphic records             | `type t('a) = {foo: 'a, bar: string};`
 
-- Note: Record types are [nominal](https://en.wikipedia.org/wiki/Nominal_type_system#:~:text=Nominal%20typing%20means%20that%20two,declarations%20name%20the%20same%20type.). This means that two different record definitions (`type x = {...};`) with the exact same fields are not compatible. They cannot be used interchangeably and cannot be spread into each other.
+- Note: Record types are [nominal](https://en.wikipedia.org/wiki/Nominal_type_system). This means that two different record definitions (`type x = {...};`) with the exact same fields are not compatible. They cannot be used interchangeably and cannot be spread into each other.
 
 ## Variants
 
@@ -190,8 +188,6 @@ Unit as only argument           | `let fn = () => 1; fn();`
 
 
 ## Refs
-
-_Details: [Mutable Bindings](mutable-bindings.md)_
 
 Refs are a way to have a mutable "variable" in your program. It is a thin wrapper
 around a record with a mutable field called `contents`.
