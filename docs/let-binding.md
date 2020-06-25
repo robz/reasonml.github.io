@@ -1,5 +1,5 @@
 ---
-title: Let Binding
+title: Let Binding [x]
 ---
 
 A "let binding", in other languages, might be called a "variable declaration". `let` _binds_ values to names. They can be seen and referenced by code that comes _after_ them.
