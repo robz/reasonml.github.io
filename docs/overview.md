@@ -6,6 +6,15 @@ This is an overview of most language features in Reason. It does not explain
 them in detail, but should serve as a quick reference. Please see the guides
 on the left for additional details about each feature.
 
+## Bindings
+
+Feature                         | Example
+--------------------------------|----------
+String value                    | `let hi = "Hello World";`
+Int value                       | `let count = 42;`
+Type annotation                 | `let count: int = 42;`
+
+
 ## Standard types
 
 Feature                         | Example
