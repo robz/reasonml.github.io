@@ -40,7 +40,7 @@ String concatenation            | `"Hello " ++ "World"`
 Character                       | `'x'`
 Character at index              | `let x = "Hello"; x.[2];`
 
-- String Functions: [`module String`](https://caml.inria.fr/pub/docs/manual-ocaml/libref/String.html)
+- String Functions: [`module String`](https://reasonml.github.io/api/String.html)
 
 ## Numbers
 
@@ -92,7 +92,6 @@ Inline typing                   | `let divide = (a: int, b: int): int => a / b;`
 Standalone type                 | `type fn = (int, int) => int;`
 Typing optional arguments       | `let print = (~prefix: option(string)=?, text) => {...};`
 
-
 ## Basic Structures
 
 Feature                         | Example
@@ -103,8 +102,8 @@ List concat                     | `[a1, a2] @ theRest`
 Array (Mutable)                 | <code>[&#124;1, 2, 3&#124;]</code>
 Array access                    | <code>let arr = [&#124;1, 2, 3&#124;]; arr[1];</code>
 
-- List Functions: [`module List`](https://caml.inria.fr/pub/docs/manual-ocaml/libref/List.html)
-- Array Functions: [`module Array`](https://caml.inria.fr/pub/docs/manual-ocaml/libref/Array.html)
+- List Functions: [`module List`](https://reasonml.github.io/api/List.html)
+- Array Functions: [`module Array`](https://reasonml.github.io/api/Array.html)
 
 ## Maps and Sets
 
@@ -112,8 +111,8 @@ There are several different ways to interact with Maps and Sets depending on the
 specific environment being used. In standard Reason code there are `Map` and
 `Set` modules:
 
-- [`module Map.Make`](https://caml.inria.fr/pub/docs/manual-ocaml/libref/Map.Make.html)
-- [`module Set.Make`](https://caml.inria.fr/pub/docs/manual-ocaml/libref/Set.Make.html)
+- [`module Map.Make`](https://reasonml.github.io/api/Map.Make.html)
+- [`module Set.Make`](https://reasonml.github.io/api/Set.Make.html)
 
 When using BuckleScript `belt` exposes these modules:
 
@@ -123,6 +122,16 @@ When using BuckleScript `belt` exposes these modules:
 There are also other libraries that will provide their own implementation of
 these data structures. Check the style guide of the project you are
 working in to determine which module to use.
+
+## Type Parameters
+
+Types can be made generic with type parameters.
+
+Feature                         | Example
+--------------------------------|----------
+Type parameters                 | `type pair('a, 'b) = ('a, 'b);`
+Annotation with parameters      | `let x: pair(int, string) = (10, "ten");`
+String list                     | `let x: list(string) = ["Hello", "World"];`
 
 ## Records
 
@@ -135,7 +144,7 @@ Record spread                   | `let y = {...x, bar: "world"};`
 Destructuring                   | `let {foo, bar} = x;`
 Mutable record fields           | `type t = {mutable baz: int}; let z = {baz: 10};`
 Mutable record updates          | `z.baz = 23;`
-Polymorphic records             | `type t('a) = {foo: 'a, bar: string};`
+With type parameters            | `type t('a) = {foo: 'a, bar: string};`
 
 - Note: Record types are [nominal](https://en.wikipedia.org/wiki/Nominal_type_system). This means that two different record definitions (`type x = {...};`) with the exact same fields are not compatible. They cannot be used interchangeably and cannot be spread into each other.
 
@@ -148,7 +157,7 @@ Feature                         | Example
 --------------------------------|----------
 Variant definition              | <code>type t = &#124; Foo &#124; Bar;</code>
 Variants with args              | <code>type t = &#124; Foo(string) &#124; Bar(int);</code>
-Polymorphic variants            | <code>type t('a) = &#124; Foo('a) &#124; Bar(int);</code>
+With type parameters            | <code>type t('a) = &#124; Foo('a) &#124; Bar(int);</code>
 Using a variant                 | `let x = Foo("Hello");`
 
 ## Options
