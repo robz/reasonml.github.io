@@ -89,8 +89,8 @@ Function chaining (pipe)        | <code>32 &#124;> half &#124;> half; // 8</code
 Feature                         | Example
 --------------------------------|----------
 Inline typing                   | `let divide = (a: int, b: int): int => a / b;`
-Standalone type                 | `type intOperation = (int, int) => int;`
-Using standalone type           | `let divide: intOperation = (a, b) => a / b;`
+Standalone type                 | `type intFn = (int, int) => int;`
+Using standalone type           | `let divide: intFn = (a, b) => a / b;`
 Typing optional arguments       | `let print = (~prefix: option(string)=?, text) => {...};`
 
 ## Basic Structures
@@ -165,7 +165,7 @@ With type parameters            | `type t('a) = {foo: 'a, bar: string};`
 
 Variant types model values that may assume one of many known variations. This
 feature is similar to "enums" in other languages, but each variant form may
-optionally specify data that is carried along with each (capitalized) name.
+optionally specify data that is carried along with it.
 
 Feature                         | Example
 --------------------------------|----------
