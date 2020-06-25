@@ -14,7 +14,6 @@ String value                    | `let hi = "Hello World";`
 Int value                       | `let count = 42;`
 Type annotation on binding      | `let count: int = 42;`
 
-
 ## Built In Types
 
 Feature                         | Example
@@ -91,7 +90,7 @@ Feature                         | Example
 --------------------------------|----------
 Inline typing                   | `let divide = (a: int, b: int): int => a / b;`
 Standalone type                 | `type intOperation = (int, int) => int;`
-Using standalone type           | `let divide : intOperation = (a, b) => a / b;`
+Using standalone type           | `let divide: intOperation = (a, b) => a / b;`
 Typing optional arguments       | `let print = (~prefix: option(string)=?, text) => {...};`
 
 ## Basic Structures
@@ -133,9 +132,9 @@ type annotations to verify your own understanding against what the compiler infe
 
 Feature                         | Example
 --------------------------------|----------
-Expression type annotation      | `let x = (someExpressionHere : int)`
-Annotation on let binding       | `let x: int = someExpressionHere;`
-Argument/return value annotation| `let addOne = (a: int):int => a + 1;`
+Expression type annotation      | `let x = (expression: int)`
+Annotation on let binding       | `let x: int = expression;`
+Argument/return value annotation| `let addOne = (a: int): int => a + 1;`
 
 ## Type Parameters
 
@@ -164,7 +163,7 @@ With type parameters            | `type t('a) = {foo: 'a, bar: string};`
 
 ## Variants
 
-Variant types model values that may assume one of many known forms. This
+Variant types model values that may assume one of many known variations. This
 feature is similar to "enums" in other languages, but each variant form may
 optionally specify data that is carried along with each (capitalized) name.
 
@@ -173,7 +172,7 @@ Feature                         | Example
 Variant definition              | <code>type t = &#124; Foo &#124; Bar;</code>
 Variants with args              | <code>type t = &#124; Foo(string) &#124; Bar(int);</code>
 With type parameters            | <code>type t('a) = &#124; One('a) &#124; Two('a, 'a);</code>
-Using a variant                 | `let x = Two("Hello", "hello");`
+Using a variant                 | `let x = Two("Hello", "World");`
 
 ## Options
 
@@ -213,14 +212,13 @@ Matching literals               | <code>&#124; "Hello" => handleHello()</code>
 The special "unit" value (written `()`) represents something that never has any
 meaningful value (this is distinct from options which may have a value).
 Functions usually indicate that they perform a side effect by returning a unit
-value (which is evident in the function type).
+value.
 
 Feature                         | Example
 --------------------------------|----------
 Creating a unit                 | `let x = ();`
 Passing to a function           | `fn(a, b, ());`
 Unit as only argument           | `let fn = () => 1; fn();`
-
 
 ## Refs
 
