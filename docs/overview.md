@@ -15,7 +15,7 @@ Int value                       | `let count = 42;`
 Type annotation                 | `let count: int = 42;`
 
 
-## Standard types
+## Built In Values
 
 Feature                         | Example
 --------------------------------|----------
