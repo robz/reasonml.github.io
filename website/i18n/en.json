@@ -66,7 +66,7 @@
         "title": "JSX"
       },
       "let-binding": {
-        "title": "Let Binding"
+        "title": "Let Binding [x]"
       },
       "libraries": {
         "title": "Libraries"
@@ -99,7 +99,7 @@
         "title": "Object"
       },
       "old-overview": {
-        "title": "Overview"
+        "title": "Overview [x]"
       },
       "old-record": {
         "title": "Record"

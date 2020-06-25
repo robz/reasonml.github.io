@@ -39,6 +39,7 @@ Feature                         | Example
 --------------------------------|----------
 Integer                         | `23`, `-23`
 Integer operations              | `23 + 1 - 7 * 2 / 5`
+Integer modulo                  | `13 mod 2`
 Float                           | `23.0`, `-23.0`
 Float operations                | `23.0 +. 1.0 -. 7.0 *. 2.0 /. 5.0`
 Float exponentiation            | `2.0 ** 3.0`
